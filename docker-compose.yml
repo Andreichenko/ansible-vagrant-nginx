@@ -1,0 +1,10 @@
+version: "3.6"
+
+services:
+  centosVM:
+    image: "sbeliakou/trainings:centos"
+    container_name: containerVM
+    hostname: containerVM
+    privileged: true
+    ports:
+    - 127.0.0.1:2200:22/tcp

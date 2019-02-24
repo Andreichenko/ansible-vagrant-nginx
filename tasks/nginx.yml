@@ -1,0 +1,11 @@
+---
+- name: Install nginx
+  hosts: web
+
+  vars:
+    nginx_repo: http://nginx.org/packages/centos/{{ ansible_distribution_major_version }}/noarch/RPMS/nginx-release-{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}-0.el{{ ansible_distribution_major_version }}.ngx.noarch.rpm
+
+  tasks:
+  - name: Nginx repo installed
+    yum: name = {{nginx_repo}}
+    become: yes
