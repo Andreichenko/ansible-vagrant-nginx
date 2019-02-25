@@ -9,3 +9,11 @@
   - name: Nginx repo installed
     yum: name = {{nginx_repo}}
     become: yes
+
+  - name: Ensure Nginx Latest Release Installed
+    yum: name=nginx state=latest
+    become: yes
+
+  - name: Ensure Nginx Service Running and Enabled
+    service: name=nginx state=started enabled=yes
+    become: yes
