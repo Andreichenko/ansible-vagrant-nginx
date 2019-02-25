@@ -17,3 +17,9 @@
   - name: Ensure Nginx Service Running and Enabled
     service: name=nginx state=started enabled=yes
     become: yes
+
+  - name: Deploy Customized Home Page
+    copy:
+    src: nginx_home.html
+    dest: /usr/share/nginx/html/index.html
+    become: yes
