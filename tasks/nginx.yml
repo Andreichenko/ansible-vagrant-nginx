@@ -23,3 +23,22 @@
     src: nginx_home.html
     dest: /usr/share/nginx/html/index.html
     become: yes
+
+ - name: Nginx Sanity Checks
+    hosts: local
+
+    tasks:
+    - name: Check if Nginx Process Running
+      shell: ps -ef | grep -v grep | grep "nginx. master process"
+      args:
+        warn: false
+
+    - name: Check if Nginx Responds 200
+      shell: curl -sL -w "%{http_code}" localhost -o /dev/null | grep 200
+      args:
+        warn: false
+
+    - name: Check if it's really Nginx
+      shell: curl -sIL localhost | grep "^Server. nginx"
+      args:
+        warn: false
