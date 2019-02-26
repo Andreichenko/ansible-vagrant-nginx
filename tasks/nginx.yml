@@ -1,6 +1,6 @@
 ---
 - name: Install nginx
-  hosts: web
+  hosts: all
 
   vars:
     nginx_repo: http://nginx.org/packages/centos/{{ ansible_distribution_major_version }}/noarch/RPMS/nginx-release-{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}-0.el{{ ansible_distribution_major_version }}.ngx.noarch.rpm
@@ -24,21 +24,21 @@
     dest: /usr/share/nginx/html/index.html
     become: yes
 
- - name: Nginx Sanity Checks
-    hosts: local
+- name: Nginx Sanity Checks
+  hosts: all
 
-    tasks:
-    - name: Check if Nginx Process Running
-      shell: ps -ef | grep -v grep | grep "nginx. master process"
-      args:
-        warn: false
+  tasks:
+  - name: Check if Nginx Process Running
+    shell: ps -ef | grep -v grep | grep "nginx. master process"
+    args:
+      warn: false
 
-    - name: Check if Nginx Responds 200
-      shell: curl -sL -w "%{http_code}" localhost -o /dev/null | grep 200
-      args:
-        warn: false
+  - name: Check if Nginx Responds 200
+    shell: curl -sL -w "%{http_code}" localhost -o /dev/null | grep 200
+    args:
+      warn: false
 
-    - name: Check if it's really Nginx
-      shell: curl -sIL localhost | grep "^Server. nginx"
-      args:
-        warn: false
+  - name: Check if it's really Nginx
+    shell: curl -sIL localhost | grep "^Server. nginx"
+    args:
+      warn: false

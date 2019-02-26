@@ -1,5 +1,6 @@
 [web]
-192.168.30.10
+webserv ansible_host=127.0.0.1 ansible_user=vagrant ansible_port=2222 ansible_ssh_private_key_file=/Users/aleksandrandreichenko/.vagrant.d/insecure_private_key
 
-[local]
-127.0.0.1
+
+[webserver]
+web1 ansible_host=192.168.30.10 ansible_port=2200 ansible_user=devops

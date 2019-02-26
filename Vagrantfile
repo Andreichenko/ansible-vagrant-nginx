@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key=false
 
   config.vm.provider "virtualbox" do |vb|
-    # Virtual instance
+    # Virtual instance settings
     vb.name = "ansible-machine-1"
     vb.gui = false
     vb.memory = "512"
